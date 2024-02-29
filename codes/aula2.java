@@ -36,16 +36,29 @@ public class aula2 {
     }
 
     public static ArrayList<Integer> uniaoOrdenada(ArrayList<Integer> vetorA, ArrayList<Integer> vetorB){
-        int indexA = 0;
-        int indexB = 0;
-        while (indexB < vetorB.size()) {
-            if (indexA >= vetorA.size() || vetorB.get(indexB) < vetorA.get(indexA)) {
-                vetorA.add(indexA, vetorB.get(indexB));
-                indexB++;
-            } else if (vetorB.get(indexB).equals(vetorA.get(indexA))) {
-                indexB++;
+        boolean has = false;
+
+        for(Integer b : vetorB){
+            for(Integer a : vetorA){
+                if(b == a){
+                    has = true;
+                    break;
+                }
             }
-            indexA++;
+            if(!has){
+                vetorA.add(b);
+            }
+            has = false;
+        }
+
+        for(int i = 1; i < vetorA.size(); i++){
+            int key = vetorA.get(i);
+            int index = i - 1;
+            while(index >= 0 && vetorA.get(index) > key){
+                vetorA.set(index + 1, vetorA.get(index));
+                index -= 1;
+            }
+            vetorA.set(index +1, key);
         }
         return vetorA;
     }
