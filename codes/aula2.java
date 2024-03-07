@@ -3,9 +3,7 @@ import java.util.List;
 
 public class aula2 {
     public static void main(String[] args) {
-        int[] array = {7,3,5,8,10,2,20,30,8,9,10,11,12};
-        aula2.imprimirAlfabeto();
-        System.out.println(aula2.maiorTamanhoDeUmaSequenciaV2(array));
+    
     }
     public static void imprimirAlfabeto(){
         for (int ch = 97; ch <= 122; ch++ ){
@@ -13,38 +11,6 @@ public class aula2 {
         }
 
     }
-
-    public static int maiorTamanhoDeUmaSequencia(int[] vetor){
-        if(vetor.length == 1){
-            return 1;
-        } else if (vetor.length == 0) {
-            return 0;
-        }
-        List<Integer> listSim = new LinkedList<>();
-        List<Integer> listNao = new LinkedList<>();
-
-        for(int i = 0; i < vetor.length-1; i++){
-            if(vetor[i]<vetor[i+1]){
-                listSim.add(vetor[i]);
-            }else{
-                listSim.add(vetor[i]);
-                if(listSim.size() > listNao.size()){
-                    listNao = new LinkedList<>(listSim);
-                }
-                listSim.clear();
-            }
-        }
-        if(vetor[vetor.length-1] > vetor[vetor.length-2]){
-            listSim.add(vetor[vetor.length-1]);
-        }
-
-        if(listSim.size()>listNao.size()){
-            return listSim.size();
-        }else{
-            return listNao.size();
-        }
-    }
-
 
     public static int maiorTamanhoDeUmaSequenciaV2(int[] vetor){
         if(vetor.length == 1){
@@ -69,10 +35,31 @@ public class aula2 {
         return (tms>aux) ? tms : aux;
     }
 
-    public static int[] uniaoOrdenada(int[] a, int[] b){
-        int tamanho = a.length + b.length;
-        a[]
-        return;
+    public static ArrayList<Integer> uniaoOrdenada(ArrayList<Integer> vetorA, ArrayList<Integer> vetorB){
+        boolean has = false;
 
+        for(Integer b : vetorB){
+            for(Integer a : vetorA){
+                if(b == a){
+                    has = true;
+                    break;
+                }
+            }
+            if(!has){
+                vetorA.add(b);
+            }
+            has = false;
+        }
+
+        for(int i = 1; i < vetorA.size(); i++){
+            int key = vetorA.get(i);
+            int index = i - 1;
+            while(index >= 0 && vetorA.get(index) > key){
+                vetorA.set(index + 1, vetorA.get(index));
+                index -= 1;
+            }
+            vetorA.set(index +1, key);
+        }
+        return vetorA;
     }
 }
