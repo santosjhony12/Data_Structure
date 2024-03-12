@@ -30,9 +30,6 @@ def potencia(base, expoente):
     else:
         return potencia(base, expoente-1)*base
 
-
-
-
 def toBinary(decimal):
     if decimal == 0:
         return 

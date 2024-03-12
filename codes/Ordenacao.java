@@ -8,7 +8,7 @@ public class Ordenacao{
 				array[index + 1] = array[index];
 				index -= 1;
 			}
-			array[index + 1] = key
+			array[index + 1] = key;
 		}
 		return array;
 	}
