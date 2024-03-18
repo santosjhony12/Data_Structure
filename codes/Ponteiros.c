@@ -20,8 +20,6 @@ int main()
     int **pp;
     pp = NULL;
 
-    
-
     char c = 'h';
     char *pc = &c;
     return 0;
