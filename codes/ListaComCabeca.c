@@ -4,7 +4,7 @@
 struct cel
 {
     int conteudo;
-    struct cel *seg; //seguinte
+    struct cel *seg;
 };
 typedef struct cel celula;
 
@@ -13,20 +13,15 @@ void inserir(celula *lst, int x)
     celula *novo;
     novo = malloc(sizeof(celula));
     novo->conteudo = x;
-    novo->seg = NULL;
-    celula *ultimo = lst;
-    while(ultimo->seg != NULL)
-    {
-        ultimo = ultimo->seg;
-    }
-    ultimo->seg = novo;
-
+    novo->seg = lst->seg;
+    lst->seg = novo;
 }
 void imprimirLista(celula *list){
     celula *p;
-    if (list != NULL){
-        printf("%d\n", list->conteudo);
-        imprimirLista(list->seg);
+    for(p = list; p != NULL; p = p->seg){
+        if(!(p->seg == list->seg)){
+            printf("%d", p->conteudo);
+        }
     }
 }
 int main()
@@ -35,10 +30,9 @@ int main()
 
     celula *lista;
     lista = malloc(sizeof(celula));
-    lista->conteudo = vetor[0];
-    lista->seg = NULL; // COM CABEÇA
+    lista->seg = NULL; 
 
-    for(int i = 1; i < 5; i++){
+    for(int i = 0; i < 5; i++){
         inserir(lista, vetor[i]);
     }
     imprimirLista(lista);
