@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h> 
-
+// CRIAR UM MÉTODO PARA O PRIMEIRO ELEMENTO E PARA OS DEMAIS
 struct cel
 {
     int conteudo;
-    struct cel *seg; //seguinte
+    struct cel *seg; // Próximo
 };
 typedef struct cel celula;
 
@@ -14,34 +14,34 @@ void inserir(celula *lst, int x)
     novo = malloc(sizeof(celula));
     novo->conteudo = x;
     novo->seg = NULL;
-    celula *ultimo = lst;
-    while(ultimo->seg != NULL)
-    {
-        ultimo = ultimo->seg;
-    }
-    ultimo->seg = novo;
+    celula *temp;
+    temp->seg = novo;
 
 }
-void imprimirLista(celula *list){
-    celula *p;
-    if (list != NULL){
-        printf("%d\n", list->conteudo);
-        imprimirLista(list->seg);
+
+void imprimirLista(celula *list)
+{
+    celula *p = list;
+    while(p->seg != NULL){
+        printf("%d\n", p->conteudo);
+        p = p->seg;
     }
 }
+
 int main()
 {
-    int vetor[] = {1,2,3,4,5};
+    int vetor[] = {1, 2, 3, 4, 5};
 
     celula *lista;
     lista = malloc(sizeof(celula));
-    lista->conteudo = vetor[0];
-    lista->seg = NULL; 
+    lista->seg = NULL;
 
-    for(int i = 1; i < 5; i++){
+    for (int i = 0; i < 5; i++)
+    {
         inserir(lista, vetor[i]);
     }
+
     imprimirLista(lista);
+
     return 0;
 }
-
