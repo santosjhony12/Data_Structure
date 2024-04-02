@@ -7,21 +7,33 @@ struct cel
     struct cel *seg;
 };
 typedef struct cel celula;
+celula *criarCabeca(){
+    celula *lista = malloc(sizeof(celula));
+    lista->seg = NULL;
+    return lista;
+}
 
 void inserir(celula *lst, int x)
 {
     celula *novo;
     novo = malloc(sizeof(celula));
     novo->conteudo = x;
-    novo->seg = lst->seg;
-    lst->seg = novo;
+    novo->seg = NULL;
+
+    celula *temp = lst;
+
+    while(temp->seg != NULL){
+        temp = temp->seg;
+    }
+    temp->seg = novo;
+}
+celula *inserirAntes(celula *lst, int x){
+    celula *novo = lst->seg;
 }
 void imprimirLista(celula *list){
     celula *p;
-    for(p = list; p != NULL; p = p->seg){
-        if(!(p->seg == list->seg)){
-            printf("%d", p->conteudo);
-        }
+    for(p = list->seg; p != NULL; p = p->seg){
+        printf("%d\n", p->conteudo);
     }
 }
 int main()
@@ -29,8 +41,7 @@ int main()
     int vetor[] = {1,2,3,4,5};
 
     celula *lista;
-    lista = malloc(sizeof(celula));
-    lista->seg = NULL; 
+    lista = criarCabeca();
 
     for(int i = 0; i < 5; i++){
         inserir(lista, vetor[i]);
