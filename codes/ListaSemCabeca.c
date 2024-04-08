@@ -34,6 +34,12 @@ void imprimirLista(celula *list)
         p = p->seg;
     }
 }
+void inserirUmElementoEmPrimeiroPosicao(celula **lst, int x){
+    celula *nova = malloc(sizeof(celula));
+    nova->conteudo = x;
+    nova->seg = *lst;
+    *lst = nova;
+}
 
 int main()
 {
@@ -44,6 +50,13 @@ int main()
     for(int i = 1; i<5; i++){
         inserir(lista, vetor[i]);
     }
+    printf("Imprimindo a lista sem adicionar o 8\n");
+    imprimirLista(lista);
+
+    celula **pl = &lista;
+    inserirUmElementoEmPrimeiroPosicao(pl, 8);
+
+    printf("Imprimindo a lista com o 8 adicionado\n");
     imprimirLista(lista);
     return 0;
 }

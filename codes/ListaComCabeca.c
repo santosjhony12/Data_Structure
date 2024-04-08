@@ -27,8 +27,11 @@ void inserir(celula *lst, int x)
     }
     temp->seg = novo;
 }
-celula *inserirAntes(celula *lst, int x){
-    celula *novo = lst->seg;
+void inserirAntes(celula *lst, int x){
+    celula *novo = malloc(sizeof(celula));
+    novo->conteudo = x;
+    novo->seg = lst->seg;
+    lst->seg = novo;
 }
 void imprimirLista(celula *list){
     celula *p;
@@ -46,6 +49,12 @@ int main()
     for(int i = 0; i < 5; i++){
         inserir(lista, vetor[i]);
     }
+
+    printf("Imprimindo antes\n");
+    imprimirLista(lista);
+
+    inserirAntes(lista, 8);
+    printf("Imprimindo depois\n");
     imprimirLista(lista);
     return 0;
 }
