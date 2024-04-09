@@ -41,6 +41,22 @@ void inserirUmElementoEmPrimeiroPosicao(celula **lst, int x){
     *lst = nova;
 }
 
+celula *buscarAnterior(celula *lista, int x){
+    celula *p = lista;
+    while(p->seg != NULL && p->seg->conteudo != x){
+        p = p->seg;
+    }
+    return p;
+}
+
+int removerPrimeiroElemento(celula **lst){
+    celula *lixo = *lst;
+    int x = lixo->conteudo;
+    *lst = lixo->seg;
+    free(lixo);
+    
+    return x;
+}
 int main()
 {
     int vetor[] = {1, 2, 3, 4, 5};
@@ -54,9 +70,13 @@ int main()
     imprimirLista(lista);
 
     celula **pl = &lista;
-    inserirUmElementoEmPrimeiroPosicao(pl, 8);
+   inserirUmElementoEmPrimeiroPosicao(pl, 8);
 
     printf("Imprimindo a lista com o 8 adicionado\n");
+    imprimirLista(lista);
+
+    
+    printf("Imprimindo depois de eliminar o %d\n", removerPrimeiroElemento(&lista));
     imprimirLista(lista);
     return 0;
 }

@@ -39,6 +39,22 @@ void imprimirLista(celula *list){
         printf("%d\n", p->conteudo);
     }
 }
+int removendo(celula *p){
+    celula *lixo;
+    lixo = p->seg;
+    p->seg = lixo->seg;
+    int x = lixo->conteudo;
+    free(lixo);
+    return x;
+}
+celula *buscaAnterior(celula *lst, int x) {
+    celula *p = lst;
+    while (p->seg != NULL && p->seg->conteudo != x) {
+        p = p->seg;
+    }
+    return p;
+}
+
 int main()
 {
     int vetor[] = {1,2,3,4,5};
@@ -55,6 +71,10 @@ int main()
 
     inserirAntes(lista, 8);
     printf("Imprimindo depois\n");
+    imprimirLista(lista);
+
+    
+    printf("Imprimindo depois de eliminar o x%d\n", removendo(buscaAnterior(lista, 8)));
     imprimirLista(lista);
     return 0;
 }
