@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 import java.util.List;
-import java.ArrayList;
+
 
 public class aula2 {
     public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class aula2 {
         return (tms>aux) ? tms : aux;
     }
 
-    public static ArrayList<Integer> uniaoOrdenada(ArrayList<Integer> vetorA, ArrayList<Integer> vetorB){
+    public static List<Integer> uniaoOrdenada(List<Integer> vetorA, List<Integer> vetorB){
         boolean has = false;
 
         for(Integer b : vetorB){
