@@ -20,14 +20,16 @@ void inserir(int x, fila **fim, fila **inicio) {
 }
 
 int remover(fila **inicio, fila **fim) {
-    fila *lixo = *inicio;
-    *inicio = (*inicio)->prox;
-    int x = lixo->dado;
-    if(*inicio == *fim){
-        (*fim) = NULL;
-    }
-    free(lixo);
-    return x;
+    if(*inicio != NULL){
+        fila *lixo = *inicio;
+        *inicio = (*inicio)->prox;
+        int x = lixo->dado;
+        if(*inicio == *fim){
+            (*fim) = NULL;
+        }
+        free(lixo);
+        return x;
+    }  
 }
 
 void imprimirLista(fila *list) {
