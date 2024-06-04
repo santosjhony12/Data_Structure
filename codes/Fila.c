@@ -24,7 +24,7 @@ int remover(fila **inicio, fila **fim) {
         fila *lixo = *inicio;
         *inicio = (*inicio)->prox;
         int x = lixo->dado;
-        if(*inicio == *fim){
+        if(*inicio == NULL){
             (*fim) = NULL;
         }
         free(lixo);
@@ -62,9 +62,6 @@ int main() {
     printf("Lista sem o elemento:\n");
     imprimirLista(inicio);
 
-    inserir(11, &fim, &inicio);
-    inserir(12, &fim, &inicio);
-    inserir(13, &fim, &inicio);
 
     imprimirLista(inicio);
 
